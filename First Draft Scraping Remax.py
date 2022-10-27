@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
-
 import requests
 import pandas as pd
 import numpy as np
@@ -16,22 +10,8 @@ warnings.filterwarnings('ignore')
 import matplotlib.pyplot as plt
 import geopandas
 
-
-# In[3]:
-
-
 baseurl = 'https://www.remax.ca/ab/edmonton-real-estate?pageNumber=1'
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
 
 productlinks = []
 for x in range(1,170):
@@ -44,35 +24,11 @@ for x in range(1,170):
         for link in item.find_all('a', href=True):
             productlinks.append(link['href'])
             
-##print(len(productlinks))
-
-
-# In[83]:
-
-
 print(productlinks)
-
-
-# In[84]:
-
 
 df = pd.DataFrame(productlinks)
 
-
-# In[ ]:
-
-
-df
-
-
-# In[86]:
-
-
-testlink = 'https://www.remax.ca/ab/edmonton-real-estate/6115-carr-rd-nw-wp_idm73000004-24973507-lst'
-
-
-# In[87]:
-
+## testlink = 'https://www.remax.ca/ab/edmonton-real-estate/6115-carr-rd-nw-wp_idm73000004-24973507-lst'
 
 finallist = []
 for link in productlinks:
@@ -93,27 +49,6 @@ for link in productlinks:
 df3 = pd.DataFrame(finallist)
 print(df3.head(15))
 
-
-# In[91]:
-
-
 df3.to_csv('remax-listing-exports.csv')
 
-
-# In[90]:
-
-
-df3
-
-
-# In[1]:
-
-
 df.to_csv('links.csv')
-
-
-# In[ ]:
-
-
-
-
